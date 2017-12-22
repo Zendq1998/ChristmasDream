@@ -21,6 +21,21 @@ router.get('/windows', function(ctx, next){
     ctx.body = template({})
 });
 
+router.get('/second', function(ctx, next){
+    let template = swig.compileFile(path.resolve(templateRoot, "second.html"));
+    ctx.body = template({})
+});
+
+router.get('/crishome', function(ctx, next){
+    let template = swig.compileFile(path.resolve(templateRoot, "crishome.html"));
+    ctx.body = template({})
+});
+
+router.get('/share', function(ctx, next){
+    let template = swig.compileFile(path.resolve(templateRoot, "share.html"));
+    ctx.body = template({})
+});
+
 router.get(/^\/static(?:\/|$)/, async(ctx) => {
     let filepath = ctx.path.replace(/static\//, "")
     await send(ctx, filepath, {
