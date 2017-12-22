@@ -1,0 +1,33 @@
+{
+	"routes": [
+		{
+			"name" : "mac",
+			"endpoint": "/",
+			"template": "index",
+			"async": false
+		},{
+			"name" : "mac",
+			"endpoint": "/second",
+			"template": "second",
+			"async": false
+		},{
+			"name" : "mac",
+			"endpoint": "/crishome",
+			"template": "crishome",
+			"async": false
+		},{
+			"name" : "mac",
+			"endpoint": "/end",
+			"template": "end",
+			"async": false
+		},{
+			"name" : "mac",
+			"endpoint": "/share",
+			"template": "share",
+			"async": false
+		}
+	],
+	"data":{
+		
+	}
+}
