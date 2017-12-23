@@ -7,20 +7,26 @@
             </div>
         </transition>
         <transition name="fade">
-            <img src="../pictures/smallgift.png" class="smallgift one" v-if="word>=1" @click="chose(1)">
+            <div class="smallgift one" v-if="word>=1" @click="chose(1)">
+                <img v-bind:class="{ bouncea: move}" src="../pictures/gift1.png" v-if="chosed == 1 && random == 1">
+            </div>
         </transition>
         <transition name="fade">
-            <img src="../pictures/smallgift.png" class="smallgift two" v-if="word>=1" @click="chose(2)">
+            <div class="smallgift two" v-if="word>=1" @click="chose(2)">
+                <img v-bind:class="{ bounceb: move}" src="../pictures/gift2.png" v-if="chosed == 1 && random == 2">
+            </div>
         </transition>
         <transition name="fade">
-            <img src="../pictures/smallgift.png" class="smallgift three" v-if="word>=1" @click="chose(3)">
+            <div class="smallgift three" v-if="word>=1" @click="chose(3)">
+                <img v-bind:class="{ bouncec: move}" src="../pictures/gift3.png" v-if="chosed == 1 && random == 3">
+            </div>
         </transition>
         <transition name="fade">
-            <img src="../pictures/smallgift.png" class="smallgift four" v-if="word>=1" @click="chose(4)">
+            <div class="smallgift four" v-if="word>=1" @click="chose(4)">
+                <img v-bind:class="{ bounced: move}" src="../pictures/gift4.png" v-if="chosed == 1 && random == 4">
+            </div>
         </transition>
-        <transition name="fade">
-            <img src="../pictures/littleold.png" class="littleold" v-if="word>=4">
-        </transition>
+        
         <transition name="fade1">
             <img src="../pictures/rightbubble.png" class="bubble" v-if="chosed==1&&choosing">
         </transition>
@@ -28,10 +34,10 @@
             <img src="../pictures/falsebubble.png" class="bubble" v-if="chosed==-1&&choosing">
         </transition>
         <transition name="fade">
-            <img src="../pictures/dialog.png" class="dia-img" v-if="word>=1 && !choosing" @click="next">
+            <img src="../pictures/dialog.png" class="dia-img" v-if="word>=1 && !choosing && word!=6" @click="next">
         </transition>
         <transition name="fade">
-            <div class="santa-name" v-if="word>=1 && !choosing">
+            <div class="santa-name" v-if="word>=1 && !choosing && word<=5">
                 <h2>圣诞老人:</h2>
             </div>
         </transition>
@@ -47,8 +53,27 @@
             </div>
         </transition>
         <transition name="fade">
-            <div class="santa-speak" v-if="word==3">
-                <p>可是……我好像找不到它了，你能帮帮我么？</p>
+            <div class="santa-speak" v-if="word==3 && random==1">
+                <p>可是……我好像找不到礼物盒了，你能帮帮我么？</p>
+                <p>......{{info[0]}}</p>
+            </div>
+        </transition>
+        <transition name="fade">
+            <div class="santa-speak" v-if="word==3 && random==2">
+                <p>可是……我好像找不到礼物盒了，你能帮帮我么？</p>
+                <p>......{{info[1]}}</p>
+            </div>
+        </transition>
+        <transition name="fade">
+            <div class="santa-speak" v-if="word==3 && random==3">
+                <p>可是……我好像找不到礼物盒了，你能帮帮我么？</p>
+                <p>......{{info[2]}}</p>
+            </div>
+        </transition>
+        <transition name="fade">
+            <div class="santa-speak" v-if="word==3 && random==4">
+                <p>可是……我好像找不到礼物盒了，你能帮帮我么？</p>
+                <p>......{{info[3]}}</p>
             </div>
         </transition>
         <transition name="fade">
@@ -66,7 +91,14 @@
                 word: 0,
                 choosing: false,
                 chosed: 0,
-                random: 0
+                random: 0,
+                move: false,
+                info: [
+                    "那个盒子，它总觉得自己是照片",
+                    "似乎昨天拿它垫东西了",
+                    "噢！那是一个黄色的小盒子",
+                    "对了,那个绿盒子超大，应该很好找"
+                ]
             };
         },
         mounted: function(){
@@ -78,6 +110,12 @@
         },
         methods: {
             next() {
+                if(this.word==6) {
+                    window.location.href = '/share'
+                }
+                if(this.word==5) {
+                    this.move = true
+                }
                 if(!this.choosing) {
                     this.word ++;
                     if(this.word == 4) {
@@ -109,30 +147,50 @@
 </script>
 
 <style lang="scss">
+    .bouncea {
+        transform: translate(450%,145%);
+        transition-duration: 3s;
+    }
+    .bounceb {
+        transform: translate(15%,-160%);
+        transition-duration: 3s;
+    }
+    .bouncec {
+        transform: translate(-700%,400%);
+        transition-duration: 3s;
+    }
+    .bounced {
+        transform: translate(-430%,-100%);
+        transition-duration: 3s;
+    }
     .smallgift {
-        width: 3%;
+        width: 4%;
+        height: 6%;
+        background-color: transparent;
         position: absolute;
         transform: translate(-50%,-50%);
         cursor: pointer;
     }
-    .smallgift:hover {
-        margin-top: -0.3%;
-    }
     .one {
-        top: 10%;
-        left: 10%;
+        top: 39%;
+        left: 15%;
     }
     .two {
-        top: 20%;
-        left: 30%;
+        top: 67%;
+        left: 34%;
+        height: 5%;
+        width: 6%;
     }
     .three {
-        top: 10%;
-        left: 30%;
+        top: 33%;
+        left: 56%;
+        width: 2%;
     }
     .four {
-        top:10%;
-        left: 70%;
+        top:66%;
+        left: 75%;
+        width: 5%;
+        height: 14%;
     }
     .littleold {
         width: 15%;
@@ -143,10 +201,10 @@
         transform: translate(-50%,-50%);
     }
     .bubble {
-        width: 7%;
+        width: 8%;
         position: absolute;
-        left: 9%;
-        top: 75%;
+        left: 16%;
+        top: 63%;
         transform: translate(-50%,-50%);
     }
     .dia-img {

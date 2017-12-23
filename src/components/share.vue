@@ -1,27 +1,60 @@
 <template>
     <div class="full_width full_hight background" >
-       <img src="../pictures/home.png" class="full_width full_height" v-if="word == 0" @click="next">
-       <img src="../pictures/start.gif" class="start" v-if="word == 0" @click="next">
-        <transition name="fade">
-            <div class="black full_width full_height" v-if="word==1" @click="next">
-                <transition name="fade">
-                    <div class="dialog" v-if="word==1">
-                        <span>平安夜 大家都睡着了 来看看你吧...</span>
-                    </div>
-            </transition>
+       <transition name="fade">
+            <div class="black full_width full_height" v-if="word==1">
+                <img src="../pictures/getgift.png" class="full_width full_height" @click="next">
             </div>
         </transition>
-        
         <transition name="fade">
-            <div class="black full_width full_height" v-if="word==2" @click="next">
-                <transition name="fade">
-                    <div class="dialog" v-if="word==2">
-                        <span>平安夜的晚上，你在床头挂好袜子，在期待中睡着了。</span>
-                    </div>
-            </transition>
+            <div class="black full_width full_height" v-if="word==2 || word==3">
+                <img src="../pictures/getgift1.png" class="full_width full_height" @click="next">
             </div>
         </transition>
-
+        <transition name="fade">
+            <div class="you-speak" v-if="word==2">
+                <p>哇！真的有圣诞老人！</p>
+            </div>
+        </transition>
+        <transition name="fade">
+            <div class="you-speak" v-if="word==3">
+                <p>快！拆开看看！</p>
+            </div>
+        </transition>
+        <transition name="fade">
+            <div class="black full_width full_height" v-if="word==4">
+                <img src="../pictures/opengift.png" class="full_width full_height" @click="next">
+            </div>
+        </transition>
+        <transition name="fade">
+            <div class="black full_width full_height" v-if="word==5">
+                <img src="../pictures/opengift1.png" class="full_width full_height" @click="next">
+            </div>
+        </transition>
+        <transition name="fade">
+            <div class="you-speak" v-if="word==5">
+                <p>什么？？一张小纸条？</p>
+            </div>
+        </transition>
+        <transition name="fade">
+            <div class="black full_width full_height" v-if="word==6">
+                <img src="../pictures/pepper1.png" class="full_width full_height" @click="next">
+            </div>
+        </transition>
+        <transition name="fade">
+            <div class="black full_width full_height" v-if="word==7">
+                <img src="../pictures/paper2.png" class="full_width full_height">
+            </div>
+        </transition>
+        <transition name="fade">
+            <div class="share" v-if="word==7">
+                <img src="../pictures/share.png" @click="shareToQq">
+            </div>
+        </transition>
+        <transition name="fade">
+            <div class="again" v-if="word==7">
+                <img src="../pictures/again.png" @click="back">
+            </div>
+        </transition>
     </div>
 </template>
 
@@ -30,64 +63,54 @@
         data() {
             return {
                 word:0,
-                show:true 
+                url:'www.baidu.com',
+                picurl:"http://chuantu.biz/t6/184/1514004060x-1376440250.png",
+                title:"快来啊"
             };
         },
         components: {
            
         },
         methods: {
-            next() {
-                this.word ++;
-                if(this.word == 3) {
-                    window.location.href = '/second'
-                }
+            next(){
+                this.word++
             },
-            go() {
-                
+            shareToQq(){
+                window.open('http://sns.qzone.qq.com/cgi-bin/qzshare/cgi_qzshare_onekey?summary='+this.title+'&url='+this.url+'&pics='+this.picurl,
+                'newwindow','height=400,width=400,top=100,left=100');
+            },
+            back() {
+                window.location.href = '/'
             }
+        },
+        mounted: function(){
+            this.word++
         }
     }
 </script>
 
 <style lang="scss">
-    .home {
-        position: absolute;
-        top: 0;
-        left: 0;
-    }
-    .start {
-        position: absolute;
-        top: 50%;
-        left: 50%;
-        transform: translate(-50%,-50%);
-        cursor: pointer;
-        width: 200px;
-    }
-    .dialog {
+    .you-speak {
+        color: #6A2716;
+        font-size: 32px;
         position: absolute;
         background-color: transparent;
-        top: 50%;
+        top: 70%;
         left: 50%;
         transform: translate(-50%,-50%);
     }
-    
-    .start {
-        position: absolute;     
+    .share {
+        position: absolute;
+        transform: translate(-50%,-50%);
         top: 80%;
-        left: 50%;
-        transform: translate(-50%, -50%);
-        display: block;
+        left: 65%;
         cursor: pointer;
-        width: 500px;
     }
-    .start:hover {
-        background-color: red;
-    }
-    .fade-enter-active, .fade-leave-active {
-    transition: opacity 1s
-    }
-    .fade-enter, .fade-leave-to /* .fade-leave-active in below version 2.1.8 */ {
-    opacity: 0
+    .again {
+        position: absolute;
+        transform: translate(-50%,-50%);
+        top: 80%;
+        left: 38%;
+        cursor: pointer;
     }
 </style>

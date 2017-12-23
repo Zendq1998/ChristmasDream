@@ -24,7 +24,7 @@
                 <span>想要</span>
                 
                 <span>......</span>
-                <div class="arrow arrow2" @click="next"></div>
+                
                 <br>
             </div>
         </transition>
@@ -77,7 +77,7 @@
     background-color: transparent;
     display: inline;
     top: 30%;
-    left: 39%;
+    left: 38%;
     transform: translate(-50%,-50%);
     line-height: 200%;
 }
@@ -89,7 +89,7 @@
     background-color: transparent;
     display: inline;
     top: 30%;
-    left: 39%;
+    left: 38%;
     transform: translate(-50%,-50%);
     line-height: 200%;
 }
