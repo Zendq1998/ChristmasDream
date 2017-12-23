@@ -11,12 +11,12 @@
             </div>
         </transition>
         <transition name="fade">
-            <div class="you-speak" v-if="word==2">
+            <div class="you-speak" v-if="word==2" @click="next">
                 <p>哇！真的有圣诞老人！</p>
             </div>
         </transition>
         <transition name="fade">
-            <div class="you-speak" v-if="word==3">
+            <div class="you-speak" v-if="word==3" @click="next">
                 <p>快！拆开看看！</p>
             </div>
         </transition>
@@ -31,7 +31,7 @@
             </div>
         </transition>
         <transition name="fade">
-            <div class="you-speak" v-if="word==5">
+            <div class="you-speak" v-if="word==5" @click="next">
                 <p>什么？？一张小纸条？</p>
             </div>
         </transition>
