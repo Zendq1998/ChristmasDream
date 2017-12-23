@@ -46,15 +46,22 @@
             </div>
         </transition>
         <transition name="fade">
-            <div class="share" v-if="word==7">
-                <img src="../pictures/share.png" @click="shareToQq">
+            <div v-if="word==7">
+                <img src="../pictures/share.png" class="share" @click="shareToQq">
             </div>
         </transition>
         <transition name="fade">
-            <div class="again" v-if="word==7">
-                <img src="../pictures/again.png" @click="back">
+            <div v-if="word==7">
+                <img src="../pictures/again.png" class="again" @click="back">
             </div>
         </transition>
+        <div class="black full_width full_height" v-if="warn" @click="change">
+            <transition name="fade">
+                <div class="dialog">
+                    <span>请用横屏浏览。</span>
+                </div>
+            </transition>
+        </div>
     </div>
 </template>
 
@@ -65,7 +72,8 @@
                 word:0,
                 url:'https://christmas.muxixyz.com',
                 picurl:"http://chuantu.biz/t6/184/1514004060x-1376440250.png",
-                title:"快来啊！圣诞老人送你礼物啦！"
+                title:"快来啊！圣诞老人送你礼物啦！",
+                warn:false
             };
         },
         components: {
@@ -73,6 +81,10 @@
         },
         methods: {
             next(){
+                if(window.innerHeight > window.innerWidth) {
+                    this.warn = true
+                    return 0;
+                }
                 this.word++
             },
             shareToQq(){
@@ -81,15 +93,30 @@
             },
             back() {
                 window.location.href = '/'
+            },
+            change() {
+                if(window.innerHeight < window.innerWidth) {
+                    this.warn = false
+            }
             }
         },
         mounted: function(){
+            if(window.innerHeight > window.innerWidth) {
+                this.warn = true
+            }
             this.word++
         }
     }
 </script>
 
 <style lang="scss">
+    .dialog {
+        position: absolute;
+        background-color: transparent;
+        top: 50%;
+        left: 50%;
+        transform: translate(-50%,-50%);
+    }
     .you-speak {
         color: #6A2716;
         font-size: 32px;
@@ -105,6 +132,8 @@
         top: 80%;
         left: 65%;
         cursor: pointer;
+        width: 20%;
+        -webkit-tap-highlight-color:rgba(0,0,0,0); 
     }
     .again {
         position: absolute;
@@ -112,5 +141,7 @@
         top: 80%;
         left: 38%;
         cursor: pointer;
+        width: 20%;
+        -webkit-tap-highlight-color:rgba(0,0,0,0); 
     }
 </style>

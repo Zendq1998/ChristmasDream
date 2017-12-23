@@ -2,7 +2,7 @@
     <div class="full_width full_hight background">
         
         <transition name="fade">
-            <div class="black full_width full_height" v-if="word>=1">
+            <div class="black full_width full_height" v-if="word>=1&&!warn">
                 <img src="../pictures/bedroom.png" class="full_width full_height" @click="next">
             </div>
         </transition>
@@ -32,6 +32,13 @@
         <transition name="fade">
             <img src="../pictures/bigift.gif" class="bigift" v-if="word==4" @click="go">
         </transition>
+        <div class="black full_width full_height" v-if="warn" @click="change">
+            <transition name="fade">
+                <div class="dialog">
+                    <span>请用横屏浏览。</span>
+                </div>
+            </transition>
+        </div>
     </div>   
 </template>
 
@@ -39,35 +46,59 @@
     export default {
         data() {
             return {
-               word:0
+               word:0,
+               warn:false
             };
         },
         components: {
            
         },
         mounted: function(){
+            if(window.innerHeight > window.innerWidth) {
+                this.warn = true
+            }
             this.word++
         },
         methods: {
             next(){
+                if(window.innerHeight > window.innerWidth) {
+                    this.warn = true
+                    return 0;
+                }
                 if(this.word<4){
                     this.word++;
                 }       
             },
             go(){
+                if(window.innerHeight > window.innerWidth) {
+                    this.warn = true
+                    return 0;
+                }
                 window.location.href = '/crishome'
+            },
+            change() {
+                if(window.innerHeight < window.innerWidth) {
+                    this.warn = false
+            }
             }
         }
     }
 </script>
 
 <style lang="scss">
+.dialog {
+        position: absolute;
+        background-color: transparent;
+        top: 50%;
+        left: 50%;
+        transform: translate(-50%,-50%);
+    }
 .bubble {
     position: absolute;
     top: 33%;
     left: 36%;
     transform: translate(-50%,-50%);
-    width: 30%;
+    width: 35%;
 }
 .childspeak {
     color: #6A2716;
@@ -110,5 +141,6 @@
     width: 17%;
     transform: translate(-50%,-50%);
     cursor: pointer;
+    -webkit-tap-highlight-color:rgba(0,0,0,0); 
 }
 </style>

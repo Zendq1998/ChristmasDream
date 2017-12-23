@@ -1,10 +1,10 @@
 {% extends "base.html" %} {% block title %}Christmas Dream{% endblock %}
+{% block css %} <link rel="stylesheet" type="text/css" href="/static/css/second.css">{% endblock %}
 {% block script %}
 <% for (var chunk in htmlWebpackPlugin.files.chunks) { %>
    <script src="<%= htmlWebpackPlugin.files.chunks[chunk].entry %>"></script>
    <% } %>
        {% endblock %}
 {% block content %}
-{% include "svg.html" %}
        <div id="second"></div>
 {% endblock %}

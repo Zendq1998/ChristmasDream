@@ -1,7 +1,7 @@
 <template>
-    <div class="full_width full_hight background portraid" >
+    <div class="full_width full_hight background" >
         <transition name="fade">
-            <div class="black full_width full_height" >
+            <div class="black full_width full_height" v-if="!warn&&word==0" >
                 <img src="../pictures/home.png" class="full_width full_height" @click="next">
                 <img src="../pictures/start.gif" class="start" @click="next">
             </div>
@@ -25,9 +25,13 @@
             </transition>
             </div>
         </transition>
-
-        
-
+        <div class="black full_width full_height" v-if="warn" @click="change">
+            <transition name="fade">
+                <div class="dialog">
+                    <span>请用横屏浏览。</span>
+                </div>
+            </transition>
+        </div>
     </div>
 </template>
 
@@ -37,26 +41,29 @@
             return {
                 word:0,
                 show:true,
-                portraid:false
+                warn:false
             };
         },
-        components: {
-           
-        },
-        mounted: function(){
-            if(window.orientation==180||window.orientation==0) {
-                portraid = true
+        mounted(){
+            if(window.innerHeight > window.innerWidth) {
+                this.warn = true
             }
         },
         methods: {
             next() {
+                if(window.innerHeight > window.innerWidth) {
+                    this.warn = true
+                    return 0;
+                }
                 this.word ++;
                 if(this.word == 3) {
                     window.location.href = '/second'
                 }
             },
-            go() {
-                
+            change() {
+                if(window.innerHeight < window.innerWidth) {
+                    this.warn = false
+            }
             }
         }
     }
@@ -67,14 +74,6 @@
         position: absolute;
         top: 0;
         left: 0;
-    }
-    .start {
-        position: absolute;
-        top: 50vh;
-        left: 50vh;
-        transform: translate(-50%,-50%);
-        cursor: pointer;
-        width: 200px;
     }
     .dialog {
         position: absolute;
@@ -91,10 +90,7 @@
         transform: translate(-50%, -50%);
         display: block;
         cursor: pointer;
-        width: 500px;
-    }
-    .start:hover {
-        background-color: red;
+        width: 300px;
     }
     .fade-enter-active, .fade-leave-active {
     transition: opacity 1s

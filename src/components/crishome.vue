@@ -80,7 +80,14 @@
             <div class="santa-speak" v-if="word==5">
                 <p>礼物找到啦！接下来，看我的！</p>
             </div>
-        </transition>          
+        </transition>   
+        <div class="black full_width full_height" v-if="warn" @click="change">
+            <transition name="fade">
+                <div class="dialog">
+                    <span>请用横屏浏览。</span>
+                </div>
+            </transition>
+        </div>       
     </div>    
 </template>
 
@@ -93,15 +100,19 @@
                 chosed: 0,
                 random: 0,
                 move: false,
+                warn:false,
                 info: [
                     "那个盒子，它总觉得自己是照片",
-                    "似乎昨天拿它垫东西了",
-                    "噢！那是一个黄色的小盒子",
+                    "似乎昨天拿它垫东西了(可能在圣诞树下面)",
+                    "噢！那是一个黄色的小盒子（可能再火炉上面）",
                     "对了,那个绿盒子超大，应该很好找"
                 ]
             };
         },
         mounted: function(){
+            if(window.innerHeight > window.innerWidth) {
+                this.warn = true
+            }
             this.random = Math.floor(Math.random()*4)+1;
             this.word++
         },
@@ -110,6 +121,10 @@
         },
         methods: {
             next() {
+                if(window.innerHeight > window.innerWidth) {
+                    this.warn = true
+                    return 0;
+                }
                 if(this.word==6) {
                     window.location.href = '/share'
                 }
@@ -131,6 +146,10 @@
                 }
             },
             chose(index) {
+                if(window.innerHeight > window.innerWidth) {
+                    this.warn = true
+                    return 0;
+                }
                 if(this.chosed==1) {
                     this.choosing = false;
                     this.word++;
@@ -141,27 +160,39 @@
                 else {
                     this.chosed = -1;
                 }
+            },
+            change() {
+                if(window.innerHeight < window.innerWidth) {
+                    this.warn = false
+            }
             }
         }
     }
 </script>
 
 <style lang="scss">
+    .dialog {
+        position: absolute;
+        background-color: transparent;
+        top: 50%;
+        left: 50%;
+        transform: translate(-50%,-50%);
+    }
     .bouncea {
         transform: translate(290%,75%);
-        transition-duration: 3s;
+        transition-duration: 1s;
     }
     .bounceb {
         transform: translate(15%,-130%);
-        transition-duration: 3s;
+        transition-duration: 1s;
     }
     .bouncec {
         transform: translate(-490%,230%);
-        transition-duration: 3s;
+        transition-duration: 1s;
     }
     .bounced {
         transform: translate(-290%,-100%);
-        transition-duration: 3s;
+        transition-duration: 1s;
     }
     .smallgift {
         width: 4%;
@@ -213,12 +244,13 @@
         transform: translate(-50%,-50%);
         top: 66%;
         width: 80%;
-        height: 50%;
+        height: 65%;
         cursor: pointer;
+         -webkit-tap-highlight-color:rgba(0,0,0,0); 
     }
     .santa-name {
         color: #6A2716;
-        font-size: 18px;
+        font-size: 14px;
         position: absolute;
         background-color: transparent;
         top: 70%;
