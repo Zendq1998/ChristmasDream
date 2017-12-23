@@ -71,7 +71,7 @@
 }
 .childspeak {
     color: #6A2716;
-    font-size: 20px;
+    font-size: 16px;
     font-family: '华文隶书';
     position: absolute;
     background-color: transparent;

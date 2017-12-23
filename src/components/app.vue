@@ -1,7 +1,11 @@
 <template>
-    <div class="full_width full_hight background" >
-       <img src="../pictures/home.png" class="full_width full_height" v-if="word == 0" @click="next">
-       <img src="../pictures/start.gif" class="start" v-if="word == 0" @click="next">
+    <div class="full_width full_hight background portraid" >
+        <transition name="fade">
+            <div class="black full_width full_height" >
+                <img src="../pictures/home.png" class="full_width full_height" @click="next">
+                <img src="../pictures/start.gif" class="start" @click="next">
+            </div>
+        </transition>
         <transition name="fade">
             <div class="black full_width full_height" v-if="word==1" @click="next">
                 <transition name="fade">
@@ -32,11 +36,17 @@
         data() {
             return {
                 word:0,
-                show:true 
+                show:true,
+                portraid:false
             };
         },
         components: {
            
+        },
+        mounted: function(){
+            if(window.orientation==180||window.orientation==0) {
+                portraid = true
+            }
         },
         methods: {
             next() {
@@ -60,8 +70,8 @@
     }
     .start {
         position: absolute;
-        top: 50%;
-        left: 50%;
+        top: 50vh;
+        left: 50vh;
         transform: translate(-50%,-50%);
         cursor: pointer;
         width: 200px;

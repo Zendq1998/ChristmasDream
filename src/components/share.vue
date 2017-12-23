@@ -63,9 +63,9 @@
         data() {
             return {
                 word:0,
-                url:'www.baidu.com',
+                url:'https://christmas.muxixyz.com',
                 picurl:"http://chuantu.biz/t6/184/1514004060x-1376440250.png",
-                title:"快来啊"
+                title:"快来啊！圣诞老人送你礼物啦！"
             };
         },
         components: {

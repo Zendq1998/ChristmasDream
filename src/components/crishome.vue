@@ -148,19 +148,19 @@
 
 <style lang="scss">
     .bouncea {
-        transform: translate(450%,145%);
+        transform: translate(290%,75%);
         transition-duration: 3s;
     }
     .bounceb {
-        transform: translate(15%,-160%);
+        transform: translate(15%,-130%);
         transition-duration: 3s;
     }
     .bouncec {
-        transform: translate(-700%,400%);
+        transform: translate(-490%,230%);
         transition-duration: 3s;
     }
     .bounced {
-        transform: translate(-430%,-100%);
+        transform: translate(-290%,-100%);
         transition-duration: 3s;
     }
     .smallgift {
@@ -227,7 +227,7 @@
     }
     .santa-speak {
         color: #6A2716;
-        font-size: 18px;
+        font-size: 13px;
         font-family: '华文隶书';
         position: absolute;
         background-color: transparent;
