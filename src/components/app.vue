@@ -28,7 +28,7 @@
         <div class="black full_width full_height" v-if="warn" @click="change">
             <transition name="fade">
                 <div class="dialog">
-                    <span>请用横屏浏览。</span>
+                    <span>横屏浏览效果更佳。(记得打开手机的翻转功能哦)</span>
                 </div>
             </transition>
         </div>
@@ -74,13 +74,6 @@
         position: absolute;
         top: 0;
         left: 0;
-    }
-    .dialog {
-        position: absolute;
-        background-color: transparent;
-        top: 50%;
-        left: 50%;
-        transform: translate(-50%,-50%);
     }
     
     .start {

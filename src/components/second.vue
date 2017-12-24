@@ -30,7 +30,7 @@
         </transition>
 
         <transition name="fade">
-            <img src="../pictures/bigift.gif" class="bigift" v-if="word==4" @click="go">
+            <img src="../pictures/bigift.gif" class="bigift" v-if="word>=4" @click="go">
         </transition>
         <div class="black full_width full_height" v-if="warn" @click="change">
             <transition name="fade">
@@ -65,9 +65,12 @@
                     this.warn = true
                     return 0;
                 }
-                if(this.word<4){
+                if(this.word<=4){
                     this.word++;
-                }       
+                }   
+                if(this.word>4) {
+                    window.location.href = '/crishome'
+                }    
             },
             go(){
                 if(window.innerHeight > window.innerWidth) {
@@ -86,13 +89,6 @@
 </script>
 
 <style lang="scss">
-.dialog {
-        position: absolute;
-        background-color: transparent;
-        top: 50%;
-        left: 50%;
-        transform: translate(-50%,-50%);
-    }
 .bubble {
     position: absolute;
     top: 33%;

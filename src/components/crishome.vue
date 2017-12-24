@@ -59,6 +59,7 @@
         </transition>
         <transition name="fade">
             <div class="santa-speak" v-if="speak && word==3" @click="next">
+                <p>今天有四个礼物要送呢，</p>
                 <p>可是……我好像找不到礼物盒了，你能帮帮我么？</p>
             </div>
         </transition>
@@ -117,6 +118,14 @@
             </div>
         </transition>
         <!-- 提示 -->
+
+        <div class="black full_width full_height" v-if="warn" @click="change">
+            <transition name="fade">
+                <div class="dialog">
+                    <span>横屏浏览效果更佳。</span>
+                </div>
+            </transition>
+        </div>
     </div>    
 </template>
 
@@ -125,30 +134,41 @@
         data() {
             return {
                 gift:0,
+                warn:false,
                 speak:true,
                 word:1,
                 find:0,
                 exist:1,
                 info: [
                     "对了,那个绿盒子超大，应该很好找",
-                    "那个盒子，它总觉得自己是照片",
-                    "似乎昨天拿它垫东西了",
-                    "噢！那是一个黄色的小盒子（可能再火炉上面）"
+                    "也是个绿盒子，它总喜欢高高在上",
+                    "好像...昨天拿它垫东西了",
+                    "噢！那是一个黄色的小盒子"
                 ],
                 ends:[
-                    "居然连第一个都没有找到！没关系，我送你一个吧",
+                    "居然连一个都没有找到！没关系，我送你一个吧",
                     "只找到了第一个有点遗憾，来看看是啥吧！",
                     "只找到了第一个和第二个，拆开看看吧！",
-                    "不错呢，找到了前三个，加油！",
+                    "不错呢，找到了前三个，加油！拆开看看吧",
                     "你真是个天才，居然全找到了，我要送你一份大礼！"
                 ]
             };
         },
-        mounted: function(){
-            
+        mounted(){
+            if(window.innerHeight > window.innerWidth) {
+                this.warn = true
+            }
         },
         methods: {
+            change() {
+                if(window.innerHeight < window.innerWidth) {
+                    this.warn = false
+                }
+            },
             next() {
+                if(window.innerHeight > window.innerWidth) {
+                    this.warn = true
+                }
                 if(this.word<=3) {
                     this.word++
                 }

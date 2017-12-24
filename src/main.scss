@@ -16,7 +16,13 @@ a {
     padding: 0;
 }
 
-
+.dialog {
+    position: absolute;
+    background-color: transparent;
+    top: 50%;
+    left: 50%;
+    transform: translate(-50%,-50%);
+}
 
 
 .arrow {

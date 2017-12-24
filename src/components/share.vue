@@ -110,13 +110,6 @@
 </script>
 
 <style lang="scss">
-    .dialog {
-        position: absolute;
-        background-color: transparent;
-        top: 50%;
-        left: 50%;
-        transform: translate(-50%,-50%);
-    }
     .you-speak {
         color: #6A2716;
         font-size: 32px;

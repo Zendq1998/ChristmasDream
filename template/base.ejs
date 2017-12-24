@@ -11,10 +11,48 @@
     <title>{% block title %}{% endblock %}</title>
 </head>
 <body>
-  {% block content %}{% endblock %}    
+  {% block content %}{% endblock %}   
+  <audio id="audio" src="../music/music.mp3" autoplay="autoplay" loop="loop">
+    Your browser does not support the audio tag.
+    </audio> 
+    <div class="musicinfo" id="musicinfo">
+        <audio id="musicid" src="../music/music.mp3" preload="preload" loop="loop" autoplay="autoplay"  loop="loop">您的浏览器不支持 audio标签。</audio>
+</div> 
 	<% for (var chunk in htmlWebpackPlugin.files.chunks) { %>
     <script src="<%= htmlWebpackPlugin.files.chunks[chunk].entry %>"></script>
+    <script type="text/javascript">
+      // 音乐播放
+      function autoPlayMusic() {
+          // 自动播放音乐效果，解决浏览器或者APP自动播放问题
+          function musicInBrowserHandler() {
+              musicPlay(true);
+              document.body.removeEventListener('touchstart', musicInBrowserHandler);
+          }
+          document.body.addEventListener('touchstart', musicInBrowserHandler);
+    
+          // 自动播放音乐效果，解决微信自动播放问题
+          function musicInWeixinHandler() {
+              musicPlay(true);
+              document.addEventListener("WeixinJSBridgeReady", function () {
+                  musicPlay(true);
+              }, false);
+              document.removeEventListener('DOMContentLoaded', musicInWeixinHandler);
+          }
+          document.addEventListener('DOMContentLoaded', musicInWeixinHandler);
+      }
+      function musicPlay(isPlay) {
+          var audio = document.getElementById('musicid');
+          if (isPlay && audio.paused) {
+              audio.play();
+          }
+          if (!isPlay && !audio.paused) {
+              audio.pause();
+          }
+      }
+      autoPlayMusic();
+    </script>
   <% } %>
+  
   {% block script %}{% endblock %}
 </body>
 </html>
