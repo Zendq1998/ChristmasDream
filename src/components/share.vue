@@ -64,7 +64,7 @@
         data() {
             return {
                 word:0,
-                url:'https://christmas.muxixyz.com',
+                url:'http://120.77.246.73:8080/',
                 picurl:"http://chuantu.biz/t6/184/1514004060x-1376440250.png",
                 title:"快来啊！圣诞老人送你礼物啦！",
             };
