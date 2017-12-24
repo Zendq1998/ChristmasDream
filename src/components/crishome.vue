@@ -65,7 +65,7 @@
         </transition>
         <transition name="fade">
             <div class="santa-speak startsearching" v-if="speak && (word==4 || word==5)" @click="search">
-                <span>开始寻找第{{gift+1}}个礼盒！</span>
+                <span>寻找第{{gift+1}}个礼盒！</span>
                 <span class="arrow"></span>
             </div>
         </transition>
@@ -263,8 +263,8 @@
         left: 50%;
         transform: translate(-50%,-50%);
         top: 66%;
-        width: 80%;
-        height: 65%;
+        width: 90%;
+        height: 80%;
         cursor: pointer;
         -webkit-tap-highlight-color:rgba(0,0,0,0); 
     }
@@ -274,7 +274,7 @@
         position: absolute;
         background-color: transparent;
         top: 70%;
-        left: 25%;
+        left: 20%;
         transform: translate(-50%,-50%);
     }
     .santa-speak {
@@ -282,29 +282,31 @@
         font-size: 13px;
         position: absolute;
         background-color: transparent;
-        top: 75%;
-        left: 37%;
+        top: 78%;
+        left: 40%;
         transform: translate(-50%,-50%);
         padding-top: 30px;
-        line-height: 80%;
+        line-height: 150%;
         -webkit-tap-highlight-color:rgba(0,0,0,0);
     }
     .startsearching {
         font-size: 15px;
         left: 30%;
+        top: 73%;
         line-height: 100%;
         cursor: pointer;
     }
     .searchingtip {
         font-size: 15px;
-        left: 53%;
+        left: 30%;
+        top: 82%;
         line-height: 100%;
         cursor: pointer;
     }
     .tip {
         font-size: 10px;
-        top:66%;
-        left: 43%;
+        top:71%;
+        left: 35%;
         line-height: 100%;
         cursor: pointer;
     }

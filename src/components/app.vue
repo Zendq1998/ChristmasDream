@@ -28,7 +28,7 @@
         <div class="black full_width full_height" v-if="warn" @click="change">
             <transition name="fade">
                 <div class="dialog">
-                    <span>横屏浏览效果更佳。(记得打开手机的翻转功能哦)</span>
+                    <p>横屏效果更佳哦<br>记得打开屏幕翻转功能<br>Tim玩家在浏览器打开才能横屏::>_<::</p>
                 </div>
             </transition>
         </div>

@@ -73,19 +73,19 @@
 .bubble {
     position: absolute;
     top: 33%;
-    left: 36%;
+    left: 32%;
     transform: translate(-50%,-50%);
-    width: 35%;
+    width: 30%;
 }
 .childspeak {
     color: #6A2716;
-    font-size: 16px;
+    font-size: 10px;
     font-family: '华文隶书';
     position: absolute;
     background-color: transparent;
     display: inline;
-    top: 30%;
-    left: 38%;
+    top: 31%;
+    left: 35%;
     transform: translate(-50%,-50%);
     line-height: 200%;
 }
@@ -96,8 +96,8 @@
     position: absolute;
     background-color: transparent;
     display: inline;
-    top: 30%;
-    left: 38%;
+    top: 32%;
+    left: 35%;
     transform: translate(-50%,-50%);
     line-height: 200%;
 }
@@ -113,8 +113,8 @@
 }
 .bigift {
     position: absolute;
-    top: 31%;
-    left: 37%;
+    top: 30%;
+    left: 33%;
     width: 17%;
     transform: translate(-50%,-50%);
     cursor: pointer;
