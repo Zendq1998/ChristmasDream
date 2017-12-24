@@ -51,19 +51,13 @@
         },
         methods: {
             next() {
-                if(window.innerHeight > window.innerWidth) {
-                    this.warn = true
-                    return 0;
-                }
                 this.word ++;
                 if(this.word == 3) {
                     window.location.href = '/second'
                 }
             },
             change() {
-                if(window.innerHeight < window.innerWidth) {
-                    this.warn = false
-            }
+                this.warn=false
             }
         }
     }

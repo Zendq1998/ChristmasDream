@@ -32,13 +32,6 @@
         <transition name="fade">
             <img src="../pictures/bigift.gif" class="bigift" v-if="word>=4" @click="go">
         </transition>
-        <div class="black full_width full_height" v-if="warn" @click="change">
-            <transition name="fade">
-                <div class="dialog">
-                    <span>请用横屏浏览。</span>
-                </div>
-            </transition>
-        </div>
     </div>   
 </template>
 
@@ -47,24 +40,16 @@
         data() {
             return {
                word:0,
-               warn:false
             };
         },
         components: {
            
         },
         mounted: function(){
-            if(window.innerHeight > window.innerWidth) {
-                this.warn = true
-            }
             this.word++
         },
         methods: {
             next(){
-                if(window.innerHeight > window.innerWidth) {
-                    this.warn = true
-                    return 0;
-                }
                 if(this.word<=4){
                     this.word++;
                 }   
@@ -73,10 +58,6 @@
                 }    
             },
             go(){
-                if(window.innerHeight > window.innerWidth) {
-                    this.warn = true
-                    return 0;
-                }
                 window.location.href = '/crishome'
             },
             change() {

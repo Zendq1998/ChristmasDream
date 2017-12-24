@@ -118,14 +118,6 @@
             </div>
         </transition>
         <!-- 提示 -->
-
-        <div class="black full_width full_height" v-if="warn" @click="change">
-            <transition name="fade">
-                <div class="dialog">
-                    <span>横屏浏览效果更佳。</span>
-                </div>
-            </transition>
-        </div>
     </div>    
 </template>
 
@@ -134,7 +126,6 @@
         data() {
             return {
                 gift:0,
-                warn:false,
                 speak:true,
                 word:1,
                 find:0,

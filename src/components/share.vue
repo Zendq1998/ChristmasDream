@@ -55,13 +55,7 @@
                 <img src="../pictures/again.png" class="again" @click="back">
             </div>
         </transition>
-        <div class="black full_width full_height" v-if="warn" @click="change">
-            <transition name="fade">
-                <div class="dialog">
-                    <span>请用横屏浏览。</span>
-                </div>
-            </transition>
-        </div>
+        
     </div>
 </template>
 
@@ -73,7 +67,6 @@
                 url:'https://christmas.muxixyz.com',
                 picurl:"http://chuantu.biz/t6/184/1514004060x-1376440250.png",
                 title:"快来啊！圣诞老人送你礼物啦！",
-                warn:false
             };
         },
         components: {
@@ -81,10 +74,6 @@
         },
         methods: {
             next(){
-                if(window.innerHeight > window.innerWidth) {
-                    this.warn = true
-                    return 0;
-                }
                 this.word++
             },
             shareToQq(){
@@ -95,15 +84,10 @@
                 window.location.href = '/'
             },
             change() {
-                if(window.innerHeight < window.innerWidth) {
-                    this.warn = false
-            }
+                this.warn = false
             }
         },
         mounted: function(){
-            if(window.innerHeight > window.innerWidth) {
-                this.warn = true
-            }
             this.word++
         }
     }
